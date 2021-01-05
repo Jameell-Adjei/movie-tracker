@@ -1,0 +1,43 @@
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #282c34;
+}
+.main-nav {
+    display: flex;
+    flex-direction: row;
+    background-color: #40b1d6;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: 2.5rem;
+    .main-nav__items {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        a {
+            margin: 0.5rem;
+        }
+    }
+}
+
+.search-input {
+    background-color: darken( #40b1d6, 25%);
+    width: 20rem;
+    color: aquamarine;
+    &::placeholder {
+        color: aquamarine;
+    }
+    &:focus {
+        background-color: darken( #40b1d6, 25%);
+    }
+}
+
+.movie-item{
+    color: azure;
+    background-color: blue;
+}

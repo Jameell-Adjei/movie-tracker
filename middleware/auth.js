@@ -5,7 +5,7 @@ module.exports = function (req, res, next) {
     // Get token from the header
     const token = req.header('x-auth-token');
     
-    // Check if not token
+    // Check if the token exists
     if(!token) {
         return res.status(401).json({ message: "No token auhorization denied"});
     }
