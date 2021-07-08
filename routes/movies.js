@@ -79,7 +79,7 @@ router.delete('/:id' , auth ,async (req , res)=> {
      res.json({message: 'Movie removed'}); 
 
     } catch (error) {
-        console.error(erroe.message);
+        console.error(error.message);
         res.status(500).send('Server Error');
     }
 

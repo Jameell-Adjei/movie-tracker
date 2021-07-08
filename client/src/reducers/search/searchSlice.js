@@ -1,16 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-
-
-
 export const grabData = createAsyncThunk(
     'search/dataFinding',
-    async (query , page_number) => {
-        const info = await fetch(`http://localhost:5000/search/${query}/${page_number}`,{
+    async (result) => {
+        const info = await fetch(`http://localhost:3000/search/${result.query}/${result.page_number}`,{
             method: "GET"
         });
-
+        console.log(info)
         const data = await info.json();
+        console.log(data)
         return data;
     }
 )
@@ -25,8 +23,8 @@ const searchSlice = createSlice({
       reset: state => {
         state.loading =  true;
         state.data = [];
-      } 
-    
+      }
+                                                                       
   },
     extraReducers: {
         [grabData.pending]: (state , action) => {
@@ -47,5 +45,10 @@ const searchSlice = createSlice({
 
 
 
-export const { reset } = searchSlice.actions
+export const { reset, test } = searchSlice.actions
 export default searchSlice.reducer
+
+    
+// Exporting all the results
+export const selectMovies = (state) => 
+    state.search.data[0].results

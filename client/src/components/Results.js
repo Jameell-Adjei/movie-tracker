@@ -1,24 +1,21 @@
-import { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import MovieResult from './MovieResult'
-
+import { connect } from 'react-redux';
+import MovieImage from './MovieImage';
 
 const Results = ({ data }) => {
 
-    if(data.search.loading){
-        console.log(data.search.loading)
-        return <p className='movie-item'>Results are being loaded</p>;
 
-        
-    } else if(!data.search.loading) {
-        console.log(data.search.data[0].results)
+    if(data.loading){
+        console.log(data.loading)
+        return null;    
+    } else if(!data.loading) {
+        console.log(data)
+        console.log(data.data[0].results)
     
         return (
-            <div style={userStyle}>
-                
-                <div>
-                  {data.search.data[0].results.map(result =>
-                    {  return <MovieResult  title={result.title} desc={result.overview} release={result.release_date} image={result.poster_path}/>})} 
+            <div>
+                <div className='results__container'>
+                  {data.data[0].results.map(result =>
+                    {  return <MovieImage image={result.poster_path} title={result.title} id={result.id}/>})} 
                 </div>   
                 
             </div>
@@ -26,13 +23,9 @@ const Results = ({ data }) => {
     }
 
 }
-const userStyle = { 
-    display : 'grid',
-    gridTemplateColumns : 'repeat(3 , 1fr)',
-    gridGap : '1rem'
-}
+
 const maptoProps = (state) =>{
-    return {data : state}
+    return {data : state.search}
  }      
 export default connect(maptoProps, null)(Results)
 

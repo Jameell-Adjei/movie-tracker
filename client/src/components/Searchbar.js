@@ -10,20 +10,18 @@ const mapDispatch = { grabData , reset  }
 const Seachbar = ({ grabData,  reset}) => {
     const navigate = useNavigate()
     const SendData = (event) =>{
-
+        const data = []
         if(event.charCode === 13){
             const searchData = event.target.value;
-            
+            data.query = searchData;
+            data.page_number = 1;
             if(searchData !== ''){
                 reset();
-                grabData(searchData , 1);
-                navigate('/results'); 
+                grabData(data);
+                navigate('/results');
             }                                                               
-        }
-    
-        
+        }   
     } 
-
 
     return (
         <Fragment>
